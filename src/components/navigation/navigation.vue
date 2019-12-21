@@ -13,13 +13,11 @@
 <script>
 export default {
     name: 'navigation',
-    props: {
-      fixed: Boolean
-    },
     data() {
       return {
         emptyStyle: {},
-        navStyle: {}
+        navStyle: {},
+        fixed: false
       }
     },
     watch: {
@@ -40,6 +38,22 @@ export default {
           this.emptyStyle = this.navStyle = {}
         }
       }
+    },
+    methods:{
+      handleScroll(){
+        const top= window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        if(top >= 143){
+          this.fixed = true
+        }else{
+          this.fixed = false
+        }
+      }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll, false)
+    },
+    beforeDestroied() {
+      window.removeEventListener('scroll', this.handleScroll, false)
     }
 }
 </script>
