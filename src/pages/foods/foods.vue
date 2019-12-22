@@ -16,7 +16,7 @@ export default {
     components: {
       FoodsNav,
       FoodsList,
-      FoodsCart
+      FoodsCart,
     },
     data() {
       return {

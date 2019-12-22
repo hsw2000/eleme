@@ -276,12 +276,24 @@ export default {
             font-size .2rem
             line-height .48rem
             text-align center
-            .decrease,
+            .decrease
               width .43rem
               height .43rem
-             .increase
+              box-sizing border-box
+              border 2px solid #00a0dc
+              border-radius 50%
+              line-height .43rem
+              color #00a0dc
+              font-weight bold
+            .increase
               width .43rem
               height .43rem
+              box-sizing border-box
+              background-color #00a0dc
+              border-radius 50%
+              line-height .48rem
+              color white
+              font-weight bold
             span
               margin 0 10px
 </style>
