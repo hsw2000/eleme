@@ -1,65 +1,25 @@
 <template>
   <div class="foods-list" ref="wrapper" :style="listStyle">
     <div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item border-bottom">
+      <div 
+      class="list"
+      v-for="(item1, index1) in foods"
+      :key="index1"
+      >
+        <h6>{{item1.name}}</h6>
+        <div 
+        class="item border-bottom"
+        v-for="(item2, index2) in item1.foods"
+        :key="index2"
+        >
           <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
+            <img :src="item2.img" :alt=item2.name>
           </div>
           <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-        <div class="item border-bottom">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-        <div class="item border-bottom">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-        <div class="item border-bottom">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
+            <p class="name">{{item2.name}}</p>
+            <p class="desc">{{item2.description}}</p>
+            <p class="sale"><span class="sale-amount">月售{{item2.sellCount}}份</span><span class="rate">好评率{{item2.rating}}%</span></p>
+            <p class="price">￥<span class="price-amount">{{item2.price}}</span></p>
           </div>
           <div class="add">
             <div class="decrease">-</div>
@@ -68,139 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
-      <div class="list">
-        <h6>单人特色套餐单人特色套餐</h6>
-        <div class="item">
-          <div class="img-wrapper">
-            <img src="https://cube.elemecdn.com/9/59/63b91d2b16b0d068204c0208416aajpeg.jpeg?x-oss-process=image/resize,m_lfit,w_140,h_140/watermark,g_se,x_4,y_4,image_YS8xYS82OGRlYzVjYTE0YjU1ZjJlZmFhYmIxMjM4Y2ZkZXBuZy5wbmc_eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsUF8yOA%3D%3D/quality,q_90/format,webp" alt="">
-          </div>
-          <div class="info">
-            <p class="name">莲子核桃黑米粥</p>
-            <p class="desc">咸粥</p>
-            <p class="sale"><span class="sale-amount">月售1132份</span><span class="rate">好评率100%</span></p>
-            <p class="price">￥<span class="price-amount">28</span></p>
-          </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -209,11 +37,13 @@
 export default {
     name: 'FoodsList',
     props: {
-      fixed: Boolean
+      fixed: Boolean,
+      foods: Array,
+      activeMenu: Number
     },
     data() {
       return {
-        listStyle: {}
+        listStyle: {},
       }
     },
     watch: {
@@ -225,6 +55,15 @@ export default {
         }else{
           this.listStyle = {}
         }
+      },
+      foods() {
+        setTimeout( () => {
+          const menu = document.getElementsByClassName('list')
+          this.$store.state.menuHeight = []
+          for(let i = 0;i<menu.length;i++){
+            this.$store.state.menuHeight.push(menu[i].offsetTop)
+          }
+        }, 200)
       }
     }
 }

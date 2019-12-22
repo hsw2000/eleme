@@ -1,11 +1,12 @@
 <template>
   <nav class="foods-nav" ref="wrapper" :style='navStyle'>
       <ul>
-        <li v-for="(item, index) in menu" 
+        <li v-for="(item, index) in foods" 
             :key=index
             :class="['menu-item', {'active': index==activeMenu}]"
+            @click="handleNavClick(index)"
         >
-          <span>{{item}}
+          <span>{{item.name}}
             <span :class="{'active': index == activeMenu}"></span>
           </span>
         </li>
@@ -19,13 +20,18 @@ import BScroll from 'better-scroll'
 export default {
     name: 'FoodsNav',
     props: {
-      fixed: Boolean
+      fixed: Boolean,
+      foods: Array,
+      activeMenu: Number
     },
     data() {
       return {
-        menu: ['热销榜','单人特色套餐单人特色套餐单人特色单人特色单人特色','特色粥品','精选热菜','爽口凉菜','半成品','饭','面','热销榜','热销榜','饭'],
-        activeMenu: 0,
         navStyle: {}
+      }
+    },
+    methods:{
+      handleNavClick(index) {
+        this.$emit('navClick', index)
       }
     },
     watch: {
@@ -39,10 +45,8 @@ export default {
             'bottom': '48px',
             'overflow': 'hidden'
           }
-          
         }else{
           this.navStyle = {}
-          // this.scroll = null
         }
       }
     },
