@@ -8,34 +8,42 @@
       >
         <h6>{{item1.name}}</h6>
         <div 
-        class="item border-bottom"
-        v-for="(item2, index2) in item1.foods"
-        :key="index2"
+          class="item border-bottom"
+          v-for="(item2, index2) in item1.foods"
+          :key="index2"
         >
-          <div class="img-wrapper">
-            <img :src="item2.img" :alt=item2.name>
+          <div class="img-wrapper" @click="handleImgClick(item2)">
+            <img :src="item2.image" :alt="item2.name">
           </div>
           <div class="info">
             <p class="name">{{item2.name}}</p>
             <p class="desc">{{item2.description}}</p>
-            <p class="sale"><span class="sale-amount">月售{{item2.sellCount}}份</span><span class="rate">好评率{{item2.rating}}%</span></p>
+            <p class="sale">
+              <span class="sale-amount">月售{{item2.sellCount}}份</span>
+              <span class="rate">好评率{{item2.rating}}%</span>
+            </p>
             <p class="price">￥<span class="price-amount">{{item2.price}}</span></p>
           </div>
-          <div class="add">
-            <div class="decrease">-</div>
-            <span class="choose-amount">1</span>
-            <div class="increase">+</div>
-          </div>
+          <foods-control
+            :cname="item2.name"
+            :cprice="item2.price"
+            :camount="findSelectedAmount(item2.name)"
+            @increaseClick="handleIncreaseClick"
+          ></foods-control>
         </div>
       </div>
-      
     </div>
+    
   </div>
 </template>
 
 <script>
+import FoodsControl from './FoodsControl.vue'
 export default {
     name: 'FoodsList',
+    components: {
+      FoodsControl
+    },
     props: {
       fixed: Boolean,
       foods: Array,
@@ -43,7 +51,7 @@ export default {
     },
     data() {
       return {
-        listStyle: {},
+        listStyle: {}
       }
     },
     watch: {
@@ -60,12 +68,30 @@ export default {
         setTimeout( () => {
           const menu = document.getElementsByClassName('list')
           this.$store.state.menuHeight = []
+          this.$store.state.menu = menu
           for(let i = 0;i<menu.length;i++){
             this.$store.state.menuHeight.push(menu[i].offsetTop)
           }
         }, 200)
       }
-    }
+    },
+    methods:{
+      findSelectedAmount(name) {
+        for (let index = 0; index < this.$store.state.selected.length; index++){
+            if(this.$store.state.selected[index].name == name){
+                return this.$store.state.selected[index].amount
+            }
+        }
+        return 0
+      },
+      handleImgClick(food){
+        this.$emit("imgClick", food)
+      },
+      handleIncreaseClick(el) {
+        //el为加号那个div元素
+        this.$emit('increaseClick', el)
+      }
+    }    
 }
 </script>
 
@@ -106,33 +132,9 @@ export default {
               font-size .2rem
               .price-amount
                 font-size .28rem
-          .add
+          .control
             position absolute
-            display flex
-            justify-content space-around
-            top 1.34rem
+            top 1.54rem
             right .24rem
-            font-size .2rem
-            line-height .48rem
-            text-align center
-            .decrease
-              width .43rem
-              height .43rem
-              box-sizing border-box
-              border 2px solid #00a0dc
-              border-radius 50%
-              line-height .43rem
-              color #00a0dc
-              font-weight bold
-            .increase
-              width .43rem
-              height .43rem
-              box-sizing border-box
-              background-color #00a0dc
-              border-radius 50%
-              line-height .48rem
-              color white
-              font-weight bold
-            span
-              margin 0 10px
+      
 </style>

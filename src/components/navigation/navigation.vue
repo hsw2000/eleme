@@ -2,9 +2,23 @@
   <div class="navigation">
     <div :style="emptyStyle" class="empty"></div>
     <nav :style="navStyle">
-      <div class="active">商品<span class="active"></span></div>
-      <div>评价<span></span></div>
-      <div>商家<span></span></div>
+      <router-link to="/" tag="div">
+        <div :class="activeIndex==0?'active':''" @click="activeIndex=0">
+          商品<span :class="activeIndex==0?'active':''"></span>
+        </div>
+      </router-link>
+      <router-link to="/rates" tag="div">
+        <div :class="activeIndex==1?'active':''" @click="activeIndex=1">
+          评价<span :class="activeIndex==1?'active':''"></span>
+        </div>
+      </router-link>
+      <router-link to="/saler" tag="div">
+        <div :class="activeIndex==2?'active':''" @click="activeIndex=2">
+          商家<span :class="activeIndex==2?'active':''"></span>
+        </div>
+      </router-link>
+      
+      
     </nav>
   </div>
   
@@ -17,7 +31,8 @@ export default {
       return {
         emptyStyle: {},
         navStyle: {},
-        fixed: false
+        fixed: false,
+        activeIndex: 0
       }
     },
     watch: {

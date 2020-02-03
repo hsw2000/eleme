@@ -2,21 +2,21 @@
   <div class="foods-cart">
     <div class="logo-wrapper" @click="showSelected = !showSelected">
         <div class="logo"></div>
-        <i class="select_num">{{selectNum}}</i>
+        <i class="select_num">{{total.totalNum}}</i>
     </div>
     <p>
-        <span class="total">￥40</span>
+        <span class="total">￥{{total.totalPrice}}</span>
         <span class="gap">|</span>
         <span class="tips">另需配送费4元</span>
     </p>
-    <div class="buy">还差10元起送</div>
+    <div class="buy" :style="{backgroundColor: total.totalPrice>=40?'red':'rgb(43,51,59)'}">{{carMesg}}</div>
     <foods-selected v-show="showSelected"></foods-selected>
   </div>
 </template>
 
 <script>
 import FoodsSelected from './FoodsSelected.vue'
-
+import {mapGetters} from 'vuex'
 export default {
     name: 'FoodsCart',
     components: {
@@ -25,10 +25,17 @@ export default {
     data() {
         return {
             showSelected: false,
-            selectNum: 0
         }
     },
-    methods: {
+    computed: {
+        ...mapGetters(['total']),
+        carMesg() {
+            if(this.total.totalPrice < 40){
+                return '还差'+(40-this.total.totalPrice)+'元起送'
+            }else{
+                return '结算'
+            }
+        }
     }
 }
 </script>
@@ -42,6 +49,7 @@ export default {
         display flex
         height 48px
         background-color #07111b
+        z-index 10
         .logo-wrapper
             position relative
             display flex
@@ -49,7 +57,6 @@ export default {
             bottom .25rem
             width 1rem
             height 1rem
-            z-index 10
             align-items center
             justify-content center
             background-color #07111b
