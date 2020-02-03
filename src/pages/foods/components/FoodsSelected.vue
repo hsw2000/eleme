@@ -2,13 +2,11 @@
   <div class="foods-selected">
       <p class="title">购物车</p>
       <ul class="main" ref="wrapper">
-        <li v-for="(item) in this.$store.state.selected" :key="item.id">
+        <li v-for="item in selected" :key="item.id">
           <span>{{item.name}}</span>
           <span class="price">￥{{item.price}}</span>
           <foods-control
-            :cname="item.name"
-            :cprice="item.price"
-            :camount="item.amount"
+            :cfood="item"
           ></foods-control>
         </li>        
       </ul>
@@ -27,6 +25,13 @@ export default {
             type: Boolean,
             default: false
         }
+    },
+    computed: {
+      selected: {
+        get() {
+          return this.$store.state.selected
+        }
+      }
     }
 }
 </script>

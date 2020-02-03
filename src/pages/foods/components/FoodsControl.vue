@@ -4,14 +4,14 @@
       <div
         class="decrease"
         @click="handleDecrease()"
-        v-show="amount>0"
+        v-show="cfood.selectAmount>0"
       >-</div>
     </transition>
     <transition name="rotate">
       <span
         class="choose-amount"
-        v-show="amount>0"
-      >{{amount}}</span>
+        v-show="cfood.selectAmount>0"
+      >{{cfood.selectAmount}}</span>
     </transition>
     <div 
       class="increase"
@@ -25,32 +25,15 @@ import { mapState, mapMutations, mapGetters } from 'vuex'
 export default {
     name: 'FoodsControl',
     props: {
-      cname: '',
-      cprice: 0,
-      camount: 0
-    },
-    data() {
-      return {
-        name: this.cname,
-        price: this.cprice,
-        amount: this.camount
-      }
+      cfood: Object
     },
     methods:{
       handleIncrease() {
-        this.$store.commit('amountChangeMutations', {'name':this.name, 'amount':this.amount+1, 'price':this.price})
+        this.$store.commit('addGoods', this.cfood)
         this.$emit('increaseClick', event.target)
       },
       handleDecrease() {
-        if(this.amount <= 0){
-          return
-        }
-        this.$store.commit('amountChangeMutations', {'name':this.name, 'amount':this.amount-1, 'price':this.price})
-      }
-    },
-    watch:{
-      camount() {
-        this.amount = this.camount
+        this.$store.commit('minusGoods',this.cfood)
       }
     }
 }

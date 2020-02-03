@@ -12,16 +12,14 @@
                 <div class="button">
                     <transition-group name="toggle">
                         <div 
-                            v-if="selectedNum == 0" 
+                            v-if="!food.selectAmount" 
                             class="add-to-car"
                             @click="handleAddToCarClick"  
                             :key="1"
                         >添加至购物车</div>
                         <foods-control 
                             v-else
-                            :cname="food.name"
-                            :cprice="food.price"
-                            :camount="findSelectedAmount(food.name)"
+                            :cfood="food"
                             :key="2"
                             @increaseClick="handleIncreaseClick"
                         ></foods-control>
@@ -71,29 +69,18 @@ export default {
             this.badRatesNum = 0
         },
         show() {
-            this.$nextTick(() => {
-                this.$store.commit('findSelectedNum', this.food.name)
-                this.selectedNum = this.$store.state.selectedNum
-                this.food.ratings.forEach(element => {
-                    if(element.rateType == 1){
-                        this.goodRatesNum++
-                    }else{
-                        this.badRatesNum++
-                    }
-                });
-                this.showDetail = true
-            }) 
-        },
-        findSelectedAmount(name) {
-            for (let index = 0; index < this.$store.state.selected.length; index++){
-                if(this.$store.state.selected[index].name == name){
-                    return this.selectedNum = this.$store.state.selected[index].amount
+            this.food.ratings.forEach(element => {
+                if(element.rateType == 1){
+                    this.goodRatesNum++
+                }else{
+                    this.badRatesNum++
                 }
-            }
-            return this.selectedNum = 0
+            });
+            this.showDetail = true
+        
         },
         handleAddToCarClick(event) {
-            this.$store.commit('amountChangeMutations', {'name':this.food.name, 'amount':1, 'price':this.food.price})
+            this.$store.commit('addGoods', this.food)
             this.selectedNum++;
             this.$emit('increaseClick', event.target)
         },

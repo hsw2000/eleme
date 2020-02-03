@@ -15,7 +15,7 @@
     ></foods-list>
     <foods-cart></foods-cart>
     <foods-detail
-      :food="clickFood"
+      :food="detailFood"
       ref="detail"
       @increaseClick="dropBall"
     ></foods-detail>
@@ -48,28 +48,33 @@ export default {
       FoodsCart,
       FoodsDetail
     },
-    props: {
-      foods: Array
-    },
     data() {
       return {
         fixed: false,
         activeMenu: -1,
-        clickFood: {},
+        detailFood: {},
         balls: [{show: false},{show: false},{show: false},{show: false},{show: false}],
         dropBalls: []
+      }
+    },
+    computed: {
+      foods: {
+        get() {
+          return this.$store.state.goods
+        },
+        set() {
+
+        }
       }
     },
     methods:{
       handleScroll(){
         const top= window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        
         if(top >= 143){
           this.fixed = true
         }else{
           this.fixed = false
         }
-
         for(let i = this.$store.state.menuHeight.length; i>-1;i--){
           if(top + 70 > this.$store.state.menuHeight[i]){
             this.activeMenu = i;
@@ -91,7 +96,7 @@ export default {
         }, 100)
       },
       handleImgClick(food) {
-        this.clickFood = food
+        this.detailFood = food
         this.$refs.detail.show()
       },
       dropBall(el){

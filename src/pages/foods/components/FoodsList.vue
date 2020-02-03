@@ -25,9 +25,7 @@
             <p class="price">￥<span class="price-amount">{{item2.price}}</span></p>
           </div>
           <foods-control
-            :cname="item2.name"
-            :cprice="item2.price"
-            :camount="findSelectedAmount(item2.name)"
+            :cfood="item2"
             @increaseClick="handleIncreaseClick"
           ></foods-control>
         </div>
@@ -63,27 +61,9 @@ export default {
         }else{
           this.listStyle = {}
         }
-      },
-      foods() {
-        setTimeout( () => {
-          const menu = document.getElementsByClassName('list')
-          this.$store.state.menuHeight = []
-          this.$store.state.menu = menu
-          for(let i = 0;i<menu.length;i++){
-            this.$store.state.menuHeight.push(menu[i].offsetTop)
-          }
-        }, 200)
       }
     },
     methods:{
-      findSelectedAmount(name) {
-        for (let index = 0; index < this.$store.state.selected.length; index++){
-            if(this.$store.state.selected[index].name == name){
-                return this.$store.state.selected[index].amount
-            }
-        }
-        return 0
-      },
       handleImgClick(food){
         this.$emit("imgClick", food)
       },
@@ -91,7 +71,17 @@ export default {
         //el为加号那个div元素
         this.$emit('increaseClick', el)
       }
-    }    
+    },
+    mounted() {
+      this.$nextTick( () => {
+          const menu = document.getElementsByClassName('list')
+          this.$store.state.menuHeight = []
+          this.$store.state.menu = menu
+          for(let i = 0;i<menu.length;i++){
+            this.$store.state.menuHeight.push(menu[i].offsetTop)
+          }
+        }, 1000)
+    } 
 }
 </script>
 

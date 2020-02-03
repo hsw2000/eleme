@@ -2,7 +2,7 @@
   <div id="app">
     <intro></intro>
     <navigation></navigation>
-    <router-view :foods="foodsInfo"/>
+    <router-view/>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       sellerInfo: {},
-      foodsInfo: [],
+      goodsInfo: [],
       ratingsInfo: []
     }
   },
@@ -33,9 +33,9 @@ export default {
     getHomeInfoSucc(res) {
       const data = res.data
       this.sellerInfo = data.seller
-      this.foodsInfo = data.goods
+      this.goodsInfo = data.goods
       this.ratingsInfo = data.rating
-      console.log(this.foodsInfo);
+      this.$store.commit('initGoods', this.goodsInfo)
     }
   },
   mounted() {
