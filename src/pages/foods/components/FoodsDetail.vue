@@ -32,11 +32,21 @@
             </div>
             <div class="rates">
                 <p class="title">商品评价</p>
-                <div class="choose">
-                    <div class="choose-all">全部<span>{{goodRatesNum+badRatesNum}}</span> </div>
-                    <div class="choose-good">推荐<span>{{goodRatesNum}}</span> </div>
-                    <div class="choose-bad">吐槽<span>{{badRatesNum}}</span> </div>
-                </div>
+                <rating-select
+                    :ratings="food.ratings"
+                    :desc="{all:'全部',positive:'好评',negative:'吐槽'}"
+                    @ratesChange="updateRates"
+                ></rating-select>
+                <ul class="ratings">
+                    <li v-for="(rate, index) in currentRates" :key="index">
+                        <p class="time">{{_parseDate(rate.rateTime)}}</p>
+                        <p class="content">{{rate.text}}</p>
+                        <p class="user">
+                            {{rate.username}}
+                            <img :src="rate.avatar" />
+                        </p>
+                    </li>
+                </ul>
             </div>
         </div>
     </transition>
@@ -44,10 +54,12 @@
 
 <script>
 import FoodsControl from './FoodsControl.vue'
+import RatingSelect from './RatingSelect.vue'
 export default {
     name: 'FoodsDetail',
     components: {
-        FoodsControl
+        FoodsControl,
+        RatingSelect
     },
     props: {
         food: {
@@ -58,26 +70,15 @@ export default {
         return {
             showDetail: false,
             selectedNum: 0,
-            goodRatesNum: 0,
-            badRatesNum: 0
+            currentRates: []
         }
     },
     methods: {
         handleBackClick() {
             this.showDetail = false
-            this.goodRatesNum = 0
-            this.badRatesNum = 0
         },
         show() {
-            this.food.ratings.forEach(element => {
-                if(element.rateType == 1){
-                    this.goodRatesNum++
-                }else{
-                    this.badRatesNum++
-                }
-            });
             this.showDetail = true
-        
         },
         handleAddToCarClick(event) {
             this.$store.commit('addGoods', this.food)
@@ -85,9 +86,16 @@ export default {
             this.$emit('increaseClick', event.target)
         },
         handleIncreaseClick(el) {
-        //el为加号那个div元素
-        this.$emit('increaseClick', el)
-      }
+            //el为加号那个div元素
+            this.$emit('increaseClick', el)
+        },
+        updateRates(newRates) {
+            this.currentRates = newRates
+        },
+        _parseDate(str) {
+            let newTime = new Date(parseInt(str))
+            return newTime.toLocaleString( )
+        }
     }
 }
 </script>
@@ -181,24 +189,29 @@ export default {
             padding .36rem
             .title
                 font-size .28rem
-            .choose
-                margin-top .24rem
-                overflow hidden
-                div
-                    float left
-                    margin-right .16rem
-                    font-size .24rem
-                    line-height .32rem
-                    padding .16rem .24rem
-                    color rgb(77,85,93)
-                    span
-                        margin-left .1rem
+            .ratings
+                &>li
+                    position relative
+                    .time
+                        margin-top .32rem
                         font-size .2rem
-                .choose-all
-                    background-color rgb(0,160,220)
-                    color white
-                .choose-good
-                    background-color rgba(0,160,220,0.2)
-                .choose-bad
-                    background-color rgba(77,85,93,0.2)
+                        line-height .24rem
+                        color rgb(147,153,159)
+                    .content
+                        margin-top .32rem
+                        padding-bottom .32rem
+                        border-bottom 1px solid rgba(7,17,27,0.1)
+                        font-size .24rem
+                        line-height .32rem
+                    .user
+                        position absolute 
+                        top 0
+                        right 0
+                        font-size .2rem
+                        line-height .24rem
+                        margin-right .12rem
+                        color rgb(147,153,159)
+                        &>img
+                            width .24rem
+                            height .24rem
 </style>
