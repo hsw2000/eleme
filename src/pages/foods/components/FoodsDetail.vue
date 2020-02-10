@@ -1,6 +1,7 @@
 <template>
     <transition name="move">
-        <div class="foods-detail" v-show="showDetail">
+        <div class="foods-detail" v-show="showDetail" ref="wrapper">
+        <div>
             <div class="image">
                 <img :src="food.image" :alt="food.name">
                 <i @click="handleBackClick">返回</i>
@@ -49,12 +50,17 @@
                 </ul>
             </div>
         </div>
+        </div>
     </transition>
 </template>
 
 <script>
 import FoodsControl from './FoodsControl.vue'
+<<<<<<< Updated upstream
 import RatingSelect from './RatingSelect.vue'
+=======
+import BScroll from 'better-scroll'
+>>>>>>> Stashed changes
 export default {
     name: 'FoodsDetail',
     components: {
@@ -78,7 +84,24 @@ export default {
             this.showDetail = false
         },
         show() {
+<<<<<<< Updated upstream
             this.showDetail = true
+=======
+            setTimeout(()=>{
+                this.food.ratings.forEach(element => {
+                    if(element.rateType == 1){
+                        this.goodRatesNum++
+                    }else{
+                        this.badRatesNum++
+                    }
+                });
+            }, 200)
+            if(!this.scroll){
+                this.scroll = new BScroll(this.$refs.wrapper, {click: true, tap: true})
+            }
+            this.showDetail = true
+
+>>>>>>> Stashed changes
         },
         handleAddToCarClick(event) {
             this.$store.commit('addGoods', this.food)
@@ -113,7 +136,6 @@ export default {
         right 0
         background-color #fff
         z-index 8
-        overflow scroll
         .image
             width 100%
             height 100vw
