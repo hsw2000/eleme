@@ -56,11 +56,8 @@
 
 <script>
 import FoodsControl from './FoodsControl.vue'
-<<<<<<< Updated upstream
 import RatingSelect from './RatingSelect.vue'
-=======
 import BScroll from 'better-scroll'
->>>>>>> Stashed changes
 export default {
     name: 'FoodsDetail',
     components: {
@@ -84,24 +81,10 @@ export default {
             this.showDetail = false
         },
         show() {
-<<<<<<< Updated upstream
-            this.showDetail = true
-=======
-            setTimeout(()=>{
-                this.food.ratings.forEach(element => {
-                    if(element.rateType == 1){
-                        this.goodRatesNum++
-                    }else{
-                        this.badRatesNum++
-                    }
-                });
-            }, 200)
             if(!this.scroll){
                 this.scroll = new BScroll(this.$refs.wrapper, {click: true, tap: true})
             }
             this.showDetail = true
-
->>>>>>> Stashed changes
         },
         handleAddToCarClick(event) {
             this.$store.commit('addGoods', this.food)
