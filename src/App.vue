@@ -34,8 +34,10 @@ export default {
       const data = res.data
       this.sellerInfo = data.seller
       this.goodsInfo = data.goods
-      this.ratingsInfo = data.rating
+      this.ratingsInfo = data.ratings
       this.$store.commit('initGoods', this.goodsInfo)
+      this.$store.commit('initSeller', this.sellerInfo)
+      this.$store.commit('initRatings', this.ratingsInfo)
     }
   },
   mounted() {
