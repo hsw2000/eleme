@@ -14,5 +14,7 @@ export default{
     selected: defaultSelected,
     total: {},
     selectedNum: 0,
-    goods: []
+    goods: [],
+    seller: {},
+    ratings: []
 }

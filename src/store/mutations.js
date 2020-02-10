@@ -3,6 +3,13 @@ export default{
     initGoods(state, goods){
         state.goods = goods
     },
+    initSeller(state, seller){
+        state.seller = seller
+    },
+    initRatings(state, ratings){
+        console.log(ratings)
+        state.ratings = ratings
+    },
     addGoods(state, good){
         let outIndex1 = 0, index1 = 0
         outer:
