@@ -73,13 +73,15 @@ export default {
       }
     },
     mounted() {
-      this.$nextTick( () => {
+      // 在元素加载完成后再获取元素，暂未找到更好的方法
+      setTimeout( () => {
           const menu = document.getElementsByClassName('list')
-          this.$store.state.menuHeight = []
-          this.$store.state.menu = menu
-          for(let i = 0;i<menu.length;i++){
-            this.$store.state.menuHeight.push(menu[i].offsetTop)
+          let menuHeight = []
+          for(let i = 0; i<menu.length; i++){
+            menuHeight.push(menu[i].offsetTop)
           }
+          this.$store.commit('initMenu', menu)
+          this.$store.commit('initMenuHeight', menuHeight)
         }, 1000)
     } 
 }

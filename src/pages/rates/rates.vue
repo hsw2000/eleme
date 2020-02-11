@@ -6,6 +6,7 @@
         <p>综合评分</p>
         <p>高于周边商家{{seller.rankRate}}%</p>
       </div>
+      <!-- <div class="ov-split"></div> -->
       <div class="ov-right">
         <div class="ov-right-content">
           <div>
@@ -71,7 +72,7 @@ export default {
     },
     data() {
       return {
-        currentRates: []
+        currentRates: this.$store.state.ratings
       }
     },
     computed: {
@@ -88,7 +89,7 @@ export default {
       },
       _parseDate(str) {
         let newTime = new Date(parseInt(str))
-        return newTime.toLocaleString( )
+        return newTime.toLocaleString()
       }
     }
 }
@@ -102,9 +103,11 @@ export default {
     border-bottom 1px solid rgba(147, 153, 159, 0.3)
     .ov-left
       width 36.6%
+      border-right 1px solid rgba(147, 153, 159, 0.3)
       p
         text-align center
         &:first-child
+          margin-top .1rem
           font-size .46rem
           line-height .56rem
           color rgb(255, 153, 0)
@@ -174,10 +177,6 @@ export default {
         .recommend
           .item
             display inline-block
-            width 1.1rem
-            overflow hidden
-            white-space nowrap
-            text-overflow ellipsis
             padding 0 .12rem
             margin-left .16rem
             border 1px solid rgba(7,17,27, 0.1)

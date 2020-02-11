@@ -7,8 +7,13 @@ export default{
         state.seller = seller
     },
     initRatings(state, ratings){
-        console.log(ratings)
         state.ratings = ratings
+    },
+    initMenu(state, menu){
+        state.menu = menu
+    },
+    initMenuHeight(state, menuHeight){
+        state.menuHeight = menuHeight
     },
     addGoods(state, good){
         let outIndex1 = 0, index1 = 0

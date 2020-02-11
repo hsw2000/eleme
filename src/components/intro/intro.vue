@@ -6,22 +6,48 @@
         <img src="https://cube.elemecdn.com/8/4b/fd919773f0c93f5fcc784dd2b2ea2png.png?x-oss-process=image/format,webp/resize,w_150" alt="">
       </div>
       <div class="info">
-        <p class="name">粥品香坊（大运村）</p>
-        <p class="desc">蜂鸟专送 / 38分钟送达</p>
-        <p class="sale">在线支付满28减5，满50减1</p>
+        <p class="name">{{seller.name}}</p>
+        <p class="desc">{{seller.description}} / {{seller.deliveryTime}}分钟送达</p>
+        <p class="sale">{{seller.supports[0].description}}</p>
       </div>
-      <div class="more">5个<span>&lt;</span></div>
+      <div class="more" @click="openIntroDetail">{{seller.supports.length}}个<span>&lt;</span></div>
     </div>
     <div class="inform">
-      <p>粥品香坊其烹饪粥料的秘方源于中国千年古法，再融和现代制作工艺粥品香坊其烹饪粥料的秘方源于中国千年古法，再融和现代制作工艺</p>
+      <p>{{seller.bulletin}}</p>
       <div>&lt;</div>
     </div>
+    <intro-detail
+      v-show="showDetail"
+      @close="closeIntroDetail"
+    ></intro-detail>
   </div>
 </template>
 
 <script>
+import IntroDetail from './IntroDetail.vue'
 export default {
-    name: 'intro'
+    name: 'intro',
+    components: {
+      IntroDetail
+    },
+    data() {
+      return {
+        showDetail: false
+      }
+    },
+    methods: {
+      openIntroDetail() {
+        this.showDetail = true
+      },
+      closeIntroDetail() {
+        this.showDetail = false
+      }
+    },
+    computed: {
+      seller() {
+        return this.$store.state.seller
+      }
+    }
 }
 </script>
 

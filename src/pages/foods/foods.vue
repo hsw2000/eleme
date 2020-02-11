@@ -51,20 +51,21 @@ export default {
     data() {
       return {
         fixed: false,
-        activeMenu: -1,
+        activeMenu: 0,
         detailFood: {},
         balls: [{show: false},{show: false},{show: false},{show: false},{show: false}],
         dropBalls: []
       }
     },
     computed: {
-      foods: {
-        get() {
-          return this.$store.state.goods
-        },
-        set() {
-
-        }
+      foods() {
+        return this.$store.state.goods
+      },
+      menuHeight() {
+        return this.$store.state.menuHeight
+      },
+      menu() {
+        return this.$store.state.menu
       }
     },
     methods:{
@@ -75,8 +76,8 @@ export default {
         }else{
           this.fixed = false
         }
-        for(let i = this.$store.state.menuHeight.length; i>-1;i--){
-          if(top + 70 > this.$store.state.menuHeight[i]){
+        for(let i = this.menuHeight.length; i>-1;i--){
+          if(top + 70 > this.menuHeight[i]){
             this.activeMenu = i;
             break;
           }
@@ -87,13 +88,13 @@ export default {
         //   top: this.menuHeight[para] - 40,
         //   behavior: 'smooth'
         // })
-        this.$store.state.menu[para].scrollIntoView({
+        this.menu[para].scrollIntoView({
           block: "start",
           behavior: "smooth"
         })
-        setTimeout( () => {
+        this.$nextTick( () => {
           this.activeMenu = para
-        }, 100)
+        })
       },
       handleImgClick(food) {
         this.detailFood = food
