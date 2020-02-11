@@ -47,8 +47,15 @@
         <img 
           v-for="(img, index) in seller.pics"
           :src="img"
-          :key="index">
+          :key="index"
+          @click="showGallery(index)"
+        >
       </div>
+      <common-gallery
+        :list="seller.pics"
+        :aspectRatio="75"
+        ref="gallery"
+      ></common-gallery>
     </div>
     <div class="split"></div>
     <div class="infos">
@@ -63,15 +70,18 @@
 
 <script>
 import Star from '@/components/star/star.vue'
+import CommonGallery from '@/components/gallery/Gallery.vue'
 
 export default {
   name: 'seller',
   components: {
-    Star
+    Star,
+    CommonGallery
   },
   data() {
     return {
-      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+      classMap: ['decrease', 'discount', 'special', 'invoice', 'guarantee'],
+      swiperOption: {}
     }
   },
   computed: {
@@ -80,6 +90,14 @@ export default {
     },
     ratesNum() {
       return this.$store.state.ratings.length
+    },
+    swiper() {
+        return this.$refs.mySwiper.swiper
+      }
+  },
+  methods: {
+    showGallery(index) {
+      this.$refs.gallery.showGallery(index)
     }
   }
 }
