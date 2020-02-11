@@ -12,7 +12,7 @@
           评价<span :class="activeIndex==1?'active':''"></span>
         </div>
       </router-link>
-      <router-link to="/saler" tag="div">
+      <router-link to="/seller" tag="div">
         <div :class="activeIndex==2?'active':''" @click="activeIndex=2">
           商家<span :class="activeIndex==2?'active':''"></span>
         </div>

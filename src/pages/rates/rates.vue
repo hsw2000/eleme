@@ -143,6 +143,8 @@ export default {
     width 100%
     height .3rem
     background-color #f3f5f7
+    border-top 1px solid rgba(147, 153, 159, 0.3)
+    border-bottom 1px solid rgba(147, 153, 159, 0.3)
   .ratings
     padding 0 .36rem
     ul
