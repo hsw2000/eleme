@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api':{
-        target: 'http://192.168.0.106:8080',
+        target: 'http://localhost:8080',
         pathRewrite: {
             '^/api': '/static/mock'
         }
@@ -20,7 +20,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: '192.168.0.106', // can be overwritten by process.env.HOST
+    host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -51,7 +51,15 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-
+    // budid之后获取的数据仍然是mock数据，static文件夹下的所有内容直接原封不动地
+    // 打包到dist/static目录下，所以重写规则如下：
+    proxyTable: {
+      '/api':{
+        pathRewrite: {
+            '^/api': 'static/mock'
+        }
+      }
+    },
     /**
      * Source Maps
      */

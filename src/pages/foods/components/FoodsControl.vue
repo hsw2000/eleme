@@ -3,7 +3,7 @@
     <transition name="rotate">
       <div
         class="decrease"
-        @click="handleDecrease()"
+        @click.stop.prevent="handleDecrease()"
         v-show="cfood.selectAmount>0"
       >-</div>
     </transition>
@@ -15,7 +15,7 @@
     </transition>
     <div 
       class="increase"
-      @click="handleIncrease()"
+      @click.stop.prevent="handleIncrease()"
     >+</div>
   </div>
 </template>
@@ -31,6 +31,7 @@ export default {
       handleIncrease() {
         this.$store.commit('addGoods', this.cfood)
         this.$emit('increaseClick', event.target)
+
       },
       handleDecrease() {
         this.$store.commit('minusGoods',this.cfood)
@@ -58,6 +59,7 @@ export default {
         .increase
           width .43rem
           height .43rem
+          z-index 10
           box-sizing border-box
           background-color #00a0dc
           border-radius 50%
@@ -71,12 +73,4 @@ export default {
         .rotate-enter, .rotate-leave-to
           opacity 0
           transform translateX(30px) rotate(180deg)
-
-    @keyframes rotate-in 
-      0%
-        opacity 0
-        transform translateX(30px) rotate(180deg)
-      100%
-        opacity 1
-        transform translateX(0) rotate(0)
 </style>

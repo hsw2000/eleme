@@ -10,7 +10,7 @@
       :fixed="fixed"
       :foods="foods"  
       :activeMenu="activeMenu"
-      @imgClick="handleImgClick"
+      @detailClick="handleDetailClick"
       @increaseClick="dropBall"
     ></foods-list>
     <foods-cart></foods-cart>
@@ -96,7 +96,7 @@ export default {
           this.activeMenu = para
         })
       },
-      handleImgClick(food) {
+      handleDetailClick(food) {
         this.detailFood = food
         this.$refs.detail.show()
       },
@@ -163,13 +163,12 @@ export default {
         position fixed
         left 32px
         bottom 22px
-        z-index 200
         width 16px
         height 16px
         .ball
           width 100%
           height 100%
-          transition all .4s cubic-bezier(0.49,-0.29,0.75,0.41)
+          transition all .4s cubic-bezier(.17,-0.96,.9,.01)
           .ball-inner
             width 100%
             height 100%

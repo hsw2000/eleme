@@ -127,12 +127,14 @@ export default {
                 margin-left .1rem
                 font-size .2rem
         .active
-            border 1px solid red
+            font-weight bolder
+            font-size .26rem
         .type-all
             background-color rgb(0,160,220)
             color white
         .type-positive
-            background-color rgba(0,160,220,0.2)
+            background-color rgba(0,160,220,0.7)
+            color rgb(255,255,255)
         .type-negative
             background-color rgba(77,85,93,0.2)
     .switch

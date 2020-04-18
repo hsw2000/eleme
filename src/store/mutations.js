@@ -19,6 +19,9 @@ export default{
         let outIndex1 = 0, index1 = 0
         outer:
         for (; outIndex1 < state.goods.length; outIndex1++) {
+            if(state.goods[outIndex1].type > 0) {
+                continue;
+            }
             for(index1 = 0; index1 < state.goods[outIndex1].foods.length; index1++){
                 if(state.goods[outIndex1].foods[index1].name == good.name){
                     if(!state.goods[outIndex1].foods[index1].selectAmount){
@@ -43,6 +46,9 @@ export default{
     minusGoods(state, good){
         let outIndex1 = 0, index1 = 0, index2 = 0
         for (; outIndex1 < state.goods.length; outIndex1++) {
+            if(state.goods[outIndex1].type > 0) {
+                continue;
+            }
             for(index1 = 0; index1 < state.goods[outIndex1].foods.length; index1++){
                 // console.log(state.goods[outIndex1].foods[index1].name, good.name);
                 if(state.goods[outIndex1].foods[index1].name == good.name){
@@ -63,4 +69,31 @@ export default{
             
         // }
     },
+    minusAllGoods(state, good){
+        let outIndex1 = 0, index1 = 0, index2 = 0
+        for (; outIndex1 < state.goods.length; outIndex1++) {
+            if(state.goods[outIndex1].type > 0) {
+                continue;
+            }
+            for(index1 = 0; index1 < state.goods[outIndex1].foods.length; index1++){
+                // console.log(state.goods[outIndex1].foods[index1].name, good.name);
+                if(state.goods[outIndex1].foods[index1].name == good.name){
+                    state.goods[outIndex1].foods[index1].selectAmount = 0;{
+                    for (; index2 < state.selected.length; index2++){
+                        if(state.selected[index2].name == good.name){
+                            state.selected.splice(index2, 1)
+                        }
+                    }
+                }
+            }
+        }
+        }
+    },
+    clearAll(state) {
+        const length = state.selected.length
+        for(let i = 0; i < length; i++){
+            const good = state.selected[0];
+            this.commit('minusAllGoods', good)
+        }
+    }
 }

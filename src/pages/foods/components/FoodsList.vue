@@ -9,10 +9,11 @@
         <h6>{{item1.name}}</h6>
         <div 
           class="item border-bottom"
-          v-for="(item2, index2) in item1.foods"
+          v-for="(item2, index2) in item1.type < 0 ? item1.foods : computedFoods[item1.type]"
           :key="index2"
+          @click="handleDetailClick(item2)"
         >
-          <div class="img-wrapper" @click="handleImgClick(item2)">
+          <div class="img-wrapper">
             <img :src="item2.image" :alt="item2.name">
           </div>
           <div class="info">
@@ -37,6 +38,7 @@
 
 <script>
 import FoodsControl from './FoodsControl.vue'
+import {mapGetters} from 'vuex'
 export default {
     name: 'FoodsList',
     components: {
@@ -52,6 +54,9 @@ export default {
         listStyle: {}
       }
     },
+    computed: {
+      ...mapGetters(['computedFoods'])
+    },
     watch: {
       fixed() {
         if(this.fixed == true){
@@ -64,8 +69,8 @@ export default {
       }
     },
     methods:{
-      handleImgClick(food){
-        this.$emit("imgClick", food)
+      handleDetailClick(food){
+        this.$emit("detailClick", food)
       },
       handleIncreaseClick(el) {
         //el为加号那个div元素
@@ -73,7 +78,7 @@ export default {
       }
     },
     mounted() {
-      // 在元素加载完成后再获取元素，暂未找到更好的方法
+      // 在元素加载完成后再获取元素
       setTimeout( () => {
           const menu = document.getElementsByClassName('list')
           let menuHeight = []

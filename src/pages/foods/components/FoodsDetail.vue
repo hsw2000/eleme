@@ -4,7 +4,7 @@
         <div>
             <div class="image">
                 <img :src="food.image" :alt="food.name">
-                <i @click="handleBackClick">返回</i>
+                <i @click="handleBackClick">&lt;</i>
             </div>
             <div class="info">
                 <p class="name">{{food.name}}</p>
@@ -128,10 +128,16 @@ export default {
                 object-fit cover
             i 
                 position absolute
-                left .1rem
-                top .1rem
-                background-color #000
+                left .2rem
+                top .2rem
+                width .7rem
+                heigth .7rem
+                line-height .7rem
+                text-align center
+                font-size .4rem
+                background-color rgba(0,0,0,.5)
                 color #fff
+                border-radius 50%
         .info
             position relative
             margin-left .36rem

@@ -31,7 +31,6 @@ export default {
     },
     methods:{
       handleNavClick(index) {
-        console.log(this.$store.state.menu[index])
         this.$emit('navClick', index)
       }
     },
