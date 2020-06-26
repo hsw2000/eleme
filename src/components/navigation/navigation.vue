@@ -40,7 +40,7 @@ export default {
         if(this.fixed == true){
           this.navStyle = {
             'position': 'fixed',
-            'z-index': '1',
+            'z-index': '8',
             'top': '0',
             'left': '0',
             'right': '0',
@@ -77,17 +77,19 @@ export default {
   nav
     display flex
     height 40px
+    line-height 40px
     justify-content space-around
     div
       position relative
       font-size .28rem
       line-height 40px
+      height 40px
       span.active
         position absolute
         bottom 0
         left 0
         right 0
-        height .533333vw
+        height 2px
         background-color rgb(35, 149, 255)
     .active
       color red

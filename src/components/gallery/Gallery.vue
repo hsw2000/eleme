@@ -5,7 +5,7 @@
   >
     <div 
         class="wrapper" 
-        :style="{height: aspectRatio + 'vw'}"
+        
     >
         <swiper :options="swiperOption" ref="mySwiper">
             <swiper-slide v-for="(item, index) in list" :key="index">
@@ -78,9 +78,12 @@ export default {
         background-color #000
         flex-direction column
         justify-content center
+        align-items center
         .wrapper
             width 100%
-            height 67vw
+            .swiper-wrapper
+              display flex
+              align-items center
             img
                 width 100%
             .swiper-pagination

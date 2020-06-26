@@ -59,7 +59,6 @@ export default {
         .increase
           width .43rem
           height .43rem
-          z-index 10
           box-sizing border-box
           background-color #00a0dc
           border-radius 50%

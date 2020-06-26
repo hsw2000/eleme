@@ -196,7 +196,7 @@ export default {
       img
         margin-right .12rem
         width 2.4rem
-        height 90px
+        height 2.2rem
   .infos
     padding .36rem
     h2

@@ -92,9 +92,6 @@ export default {
           block: "start",
           behavior: "smooth"
         })
-        this.$nextTick( () => {
-          this.activeMenu = para
-        })
       },
       handleDetailClick(food) {
         this.detailFood = food

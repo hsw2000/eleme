@@ -50,16 +50,8 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    // budid之后获取的数据仍然是mock数据，static文件夹下的所有内容直接原封不动地
-    // 打包到dist/static目录下，所以重写规则如下：
-    proxyTable: {
-      '/api':{
-        pathRewrite: {
-            '^/api': 'static/mock'
-        }
-      }
-    },
+    assetsPublicPath: '/projects/eleme',
+    
     /**
      * Source Maps
      */
