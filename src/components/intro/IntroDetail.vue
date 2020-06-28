@@ -129,7 +129,7 @@ export default {
             &.special
               bg-image('../../assets/images/special_1')
         .support-text
-          line-height .32rem
+          line-height .4rem
       .bulletin
         margin 0 .24rem
         font-size .24rem

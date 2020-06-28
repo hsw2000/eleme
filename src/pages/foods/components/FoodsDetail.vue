@@ -29,7 +29,7 @@
             </div>
             <div class="introduce">
                 <p class="introduce-title">商品介绍</p>
-                <p class="introduce-content">{{food.info}}</p>
+                <p class="introduce-content">{{food.description}}</p>
             </div>
             <div class="rates">
                 <p class="title">商品评价</p>

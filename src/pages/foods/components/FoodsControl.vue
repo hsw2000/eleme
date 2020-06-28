@@ -48,21 +48,23 @@ export default {
         line-height .48rem
         text-align center
         .decrease
-          width .43rem
-          height .43rem
+          width .5rem
+          height .5rem
           box-sizing border-box
           border 2px solid #00a0dc
           border-radius 50%
-          line-height .43rem
+          font-size .4rem
+          line-height .4rem
           color #00a0dc
           font-weight bold
         .increase
-          width .43rem
-          height .43rem
+          width .5rem
+          height .5rem
           box-sizing border-box
           background-color #00a0dc
           border-radius 50%
-          line-height .48rem
+          font-size .4rem
+          line-height .5rem
           color white
           font-weight brotatold
         span

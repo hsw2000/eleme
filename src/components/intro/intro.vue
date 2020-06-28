@@ -12,7 +12,7 @@
       </div>
       <div class="more" @click="openIntroDetail">{{seller.supports.length}}个<span>&lt;</span></div>
     </div>
-    <div class="inform">
+    <div class="inform" @click="openIntroDetail">
       <p>{{seller.bulletin}}</p>
       <div>&lt;</div>
     </div>

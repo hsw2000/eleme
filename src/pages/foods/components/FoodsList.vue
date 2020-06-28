@@ -106,20 +106,22 @@ export default {
           position relative
           padding-top .36rem
           display flex
-          height 1.84rem
+          min-height 1.84rem
           .img-wrapper
             margin 0 .18rem 0 .36rem
-            width 1.14rem
+            min-width 1.14rem
+            max-width 1.14rem
             img 
               width 100%
           .info
-            margin-right .5rem
+            margin-right .9rem
             p
               margin-bottom .18rem
             .name
               font-size .28rem
             .desc
               font-size .2rem
+              line-height .28rem
             .sale
               font-size .2rem
               .sale-amount

@@ -22,7 +22,7 @@
         <span class="gap">|</span>
         <span class="tips">另需配送费4元</span>
     </p>
-    <div class="buy" :style="{backgroundColor: total.totalPrice>=40?'red':'rgb(43,51,59)'}" @click="handleBuyClick">{{carMesg}}</div>
+    <div class="buy" :style="{backgroundColor: total.totalPrice>=40?'red':'rgb(43,51,59)',padding: total.totalPrice>=40?'0 .8rem':'0 .4rem'}" @click="handleBuyClick">{{carMesg}}</div>
     <foods-selected v-show="showSelected"></foods-selected>
   </div>
 </template>
